@@ -33,4 +33,13 @@ public class StockController {
         StockPK stockPK = new StockPK(localDate, ticker);
         return stockService.getOneEntity(stockPK);
     }
+
+    @GetMapping(path = "range/{fromDate}/{toDate}")
+    public List<Stock> getStockInRange(@PathVariable("fromDate") String fromDate,
+                                       @PathVariable("toDate") String toDate) {
+
+        LocalDate fDate = LocalDate.parse(fromDate);
+        LocalDate tDate = LocalDate.parse(toDate);
+        return stockService.getStockInRange(fDate, tDate);
+    }
 }
