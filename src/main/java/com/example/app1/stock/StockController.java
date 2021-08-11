@@ -42,4 +42,15 @@ public class StockController {
         LocalDate tDate = LocalDate.parse(toDate);
         return stockService.getStockInRange(fDate, tDate);
     }
+
+    @GetMapping(path = "{ticker}/range/{fromDate}/{toDate}")
+    public Double getMeanAdjcloseInRange(@PathVariable("ticker") String ticker,
+                                              @PathVariable("fromDate") String fromDate,
+                                              @PathVariable("toDate") String toDate) {
+
+        LocalDate fDate = LocalDate.parse(fromDate);
+        LocalDate tDate = LocalDate.parse(toDate);
+        return stockService.getMeanAdjcloseInRange(ticker, fDate, tDate);
+    }
+
 }
