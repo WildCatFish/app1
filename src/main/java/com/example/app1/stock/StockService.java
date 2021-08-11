@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StockService {
@@ -18,4 +19,10 @@ public class StockService {
         return stockRepository.count();
     }
 
+
+    public Stock getOneEntity(StockPK pk){
+        Optional<Stock> stock = stockRepository.findById(pk);
+
+        return stock.get();
+    }
 }

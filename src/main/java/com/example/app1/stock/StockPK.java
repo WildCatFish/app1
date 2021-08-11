@@ -30,6 +30,13 @@ public class StockPK implements Serializable {
         this.ticker = ticker;
     }
 
+    public StockPK() {
+    }
+
+    public StockPK(LocalDate date, String ticker) {
+        this.date = date;
+        this.ticker = ticker;
+    }
 
     @Override
     public int hashCode() {
