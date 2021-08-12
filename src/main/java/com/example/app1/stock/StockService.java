@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+import  java.util.Optional;
 
 @Service
 public class StockService {
@@ -33,6 +33,10 @@ public class StockService {
 
     public Double getMeanAdjcloseInRange(String ticker, LocalDate fromDate, LocalDate toDate) {
         return stockRepository.findMeanAdjcloseInRange(ticker, fromDate, toDate);
+    }
+
+    public List<Stock> getTopRecords(int num){
+        return stockRepository.showTopRecords(num);
     }
 
 }

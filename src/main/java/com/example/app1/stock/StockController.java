@@ -53,4 +53,9 @@ public class StockController {
         return stockService.getMeanAdjcloseInRange(ticker, fDate, tDate);
     }
 
+    @GetMapping(path = "top/{num}")
+    public List<Stock> getTopRecords(@PathVariable("num") int num){
+        return stockService.getTopRecords(num);
+    }
+
 }
