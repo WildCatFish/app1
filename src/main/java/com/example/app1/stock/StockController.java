@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path="api/v1.0/stock")
@@ -20,6 +21,7 @@ public class StockController {
     public StockController(StockService stockService) {
         this.stockService = stockService;
     }
+
 
     @GetMapping
     public Long getData() {
@@ -34,17 +36,21 @@ public class StockController {
         return stockService.getOneEntity(stockPK);
     }
 
-    @GetMapping(path = "range/{fromDate}/{toDate}")
-    public List<Stock> getStockInRange( @PathVariable("fromDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
+    @GetMapping(path = {"range/{fromDate}/{toDate}", "{ticker}/range/{fromDate}/{toDate}"})
+    public List<Stock> getStockInRange( @ PathVariable("ticker") Optional<String> ticker,
+                                        @PathVariable("fromDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
                                         @PathVariable("toDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate)  {
-        return stockService.getStockInRange(fromDate, toDate);
+        if(ticker.isPresent())
+            return stockService.getTickerStockInRange(ticker.get(), fromDate, toDate);
+        else
+            return stockService.getStockInRange(fromDate, toDate);
     }
 
-    @GetMapping(path = "{ticker}/range/{fromDate}/{toDate}")
-    public Double getMeanAdjcloseInRange(@PathVariable("ticker") String ticker,
-                                              @PathVariable("fromDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
-                                              @PathVariable("toDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate) {
-        return stockService.getMeanAdjcloseInRange(ticker, fromDate, toDate);
+    @GetMapping(path = "AdjClose/{ticker}/range/{fromDate}/{toDate}")
+    public Double getMeanAdjCloseInRange(@PathVariable("ticker") String ticker,
+                                         @PathVariable("fromDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
+                                         @PathVariable("toDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate) {
+        return stockService.getMeanAdjCloseInRange(ticker, fromDate, toDate);
     }
 
     @GetMapping(path = "top/{num}")

@@ -31,7 +31,11 @@ public class StockService {
         return stockRepository.searchByRange(fromDate, toDate);
     }
 
-    public Double getMeanAdjcloseInRange(String ticker, LocalDate fromDate, LocalDate toDate) {
+    public List<Stock> getTickerStockInRange(String ticker, LocalDate fromDate, LocalDate toDate){
+        return stockRepository.searchByRangeAndTicker(ticker, fromDate, toDate);
+    }
+
+    public Double getMeanAdjCloseInRange(String ticker, LocalDate fromDate, LocalDate toDate) {
         return stockRepository.findMeanAdjcloseInRange(ticker, fromDate, toDate);
     }
 
