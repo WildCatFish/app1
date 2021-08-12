@@ -43,4 +43,8 @@ public class StockService {
         return stockRepository.showTailRecords(num);
     }
 
+    public List<Stock> getRecordsByTickerList(List<String> tickers){
+        return stockRepository.searchByTickerList(tickers);
+    }
+
 }

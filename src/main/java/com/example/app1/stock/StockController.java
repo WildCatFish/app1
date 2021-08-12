@@ -57,4 +57,9 @@ public class StockController {
         return stockService.getTailRecords(num);
     }
 
+    @GetMapping(path= "tickers/{ticker_List}")
+    public List<Stock> getByTickerList(@PathVariable("ticker_List") List<String> list){
+        return stockService.getRecordsByTickerList(list);
+    }
+
 }
