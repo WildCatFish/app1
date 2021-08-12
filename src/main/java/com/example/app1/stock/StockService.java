@@ -39,4 +39,8 @@ public class StockService {
         return stockRepository.showTopRecords(num);
     }
 
+    public List<Stock> getTailRecords(int num){
+        return stockRepository.showTailRecords(num);
+    }
+
 }

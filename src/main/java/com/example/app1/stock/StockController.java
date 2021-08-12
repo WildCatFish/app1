@@ -58,4 +58,9 @@ public class StockController {
         return stockService.getTopRecords(num);
     }
 
+    @GetMapping(path = "tail/{num}")
+    public List<Stock> getTailRecords(@PathVariable("num") int num){
+        return stockService.getTailRecords(num);
+    }
+
 }
