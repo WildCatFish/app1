@@ -28,7 +28,7 @@ public class StockService {
     }
 
     public List<Stock> getStockInRange(LocalDate fromDate, LocalDate toDate) {
-        return stockRepository.findByCreateTimestampBetween(fromDate, toDate);
+        return stockRepository.searchByRange(fromDate, toDate);
     }
 
     public Double getMeanAdjcloseInRange(String ticker, LocalDate fromDate, LocalDate toDate) {

@@ -18,7 +18,7 @@ public interface StockRepository extends JpaRepository<Stock, StockPK> {
     List<Stock> showTopRecords(int number);
 
     @Query(value = "SELECT * FROM stock s WHERE s.date BETWEEN ?1 AND ?2 ORDER BY s.date", nativeQuery = true)
-    List<Stock> findByCreateTimestampBetween(LocalDate fromDate, LocalDate toDate);
+    List<Stock> searchByRange(LocalDate fromDate, LocalDate toDate);
 
 
     @Query(value = "SELECT AVG(s.adjclose) FROM stock s " +
