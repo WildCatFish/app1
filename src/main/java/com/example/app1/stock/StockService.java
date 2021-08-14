@@ -51,4 +51,8 @@ public class StockService {
         return stockRepository.searchByTickerList(tickers);
     }
 
+    public List<CloseView> getTickerClose(String ticker){
+        return stockRepository.showTickerClose(ticker);
+    }
+
 }

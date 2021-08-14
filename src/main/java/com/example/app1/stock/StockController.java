@@ -68,4 +68,9 @@ public class StockController {
         return stockService.getRecordsByTickerList(list);
     }
 
+    @GetMapping(path="demo/{ticker}")
+    public List<CloseView> getTickerClose(@PathVariable("ticker") String ticker){
+        return stockService.getTickerClose(ticker);
+    }
+
 }

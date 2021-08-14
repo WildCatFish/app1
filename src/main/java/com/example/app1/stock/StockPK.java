@@ -26,6 +26,14 @@ public class StockPK implements Serializable {
         this.date = date;
     }
 
+    @Override
+    public String toString() {
+        return "StockPK{" +
+                "date=" + date +
+                ", ticker='" + ticker + '\'' +
+                '}';
+    }
+
     public void setTicker(String ticker) {
         this.ticker = ticker;
     }
