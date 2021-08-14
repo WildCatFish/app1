@@ -29,7 +29,7 @@ public interface StockRepository extends JpaRepository<Stock, StockPK> {
     List<Stock> searchByTickerList(List<String> tickers);
 
     @Query(value = "SELECT (s.ticker) as ticker, (s.date) as date, (s.open) as open, (s.close) as close FROM stock s where s.ticker=?1", nativeQuery = true)
-    List<CloseView> showTickerClose(String ticker);
+    List<OpenCloseView> showTickerClose(String ticker);
 
 
 }

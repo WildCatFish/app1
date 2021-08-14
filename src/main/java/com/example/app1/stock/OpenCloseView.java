@@ -2,7 +2,7 @@ package com.example.app1.stock;
 
 import java.time.LocalDate;
 
-public interface CloseView {
+public interface OpenCloseView {
 
     String getTicker();
     LocalDate getDate();
