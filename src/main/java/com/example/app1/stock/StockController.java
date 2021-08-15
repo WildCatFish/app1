@@ -68,7 +68,7 @@ public class StockController {
         return stockService.getRecordsByTickerList(list);
     }
 
-    @GetMapping(path="demo/{ticker}")
+    @GetMapping(path="open_close_view/{ticker}")
     public List<OpenCloseView> getTickerClose(@PathVariable("ticker") String ticker){
         return stockService.getTickerClose(ticker);
     }
