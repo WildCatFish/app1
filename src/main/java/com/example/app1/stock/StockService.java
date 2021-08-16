@@ -33,8 +33,21 @@ public class StockService {
         return stockRepository.searchByTickerList(tickers);
     }
 
-    public List<OpenCloseView> getTickerClose(String ticker){
-        return stockRepository.showTickerClose(ticker);
+
+    public List<OpenCloseView> getTickerOpenClose(String ticker){
+        return stockRepository.showTickerOpenClose(ticker);
+    }
+    public List<OpenCloseView> getTickerOpenCloseFromTo(String ticker, LocalDate fromDate, LocalDate toDate){
+        return stockRepository.showTickerOpenCloseFromTo(ticker, fromDate, toDate);
+
+    }
+    public List<OpenCloseView> getTickerOpenCloseFrom(String ticker, LocalDate fromDate){
+        return stockRepository.showTickerOpenCloseFrom(ticker, fromDate);
+
+    }
+    public List<OpenCloseView> getTickerOpenCloseTo(String ticker, LocalDate toDate){
+        return stockRepository.showTickerOpenCloseTo(ticker, toDate);
+
     }
 
 }

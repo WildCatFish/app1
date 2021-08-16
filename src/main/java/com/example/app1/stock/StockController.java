@@ -30,6 +30,7 @@ public class StockController {
 
     }
 
+
     @GetMapping(path = {"{tickers}"})
     public List<Stock> getStockInRange( @PathVariable("tickers") List<String> tickers) {
 
@@ -52,9 +53,19 @@ public class StockController {
         return stockService.getRecordsByTickerList(list);
     }
 
-    @GetMapping(path="open_close_view/{ticker}")
-    public List<OpenCloseView> getTickerClose(@PathVariable("ticker") String ticker){
-        return stockService.getTickerClose(ticker);
+    @GetMapping(path={"open_close_view/{ticker}","open_close_view/{ticker}/{fromDate}",
+            "open_close_view/{ticker}/{fromDate}/{toDate}"})
+    public List<OpenCloseView> getTickerClose(@PathVariable("ticker") String ticker,
+                                              @PathVariable("fromDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<LocalDate> fromDate,
+                                              @PathVariable("toDate")  @DateTimeFormat(pattern = "yyyy-MM-dd") Optional<LocalDate> toDate) {
+        if(fromDate.isPresent() && toDate.isPresent())
+            return stockService.getTickerOpenCloseFromTo(ticker, fromDate.get(), toDate.get());
+        else if(fromDate.isPresent())
+            return stockService.getTickerOpenCloseFrom(ticker, fromDate.get());
+        else if(toDate.isPresent())
+            return stockService.getTickerOpenCloseTo(ticker, toDate.get());
+        else
+            return stockService.getTickerOpenClose(ticker);
     }
 
 }
