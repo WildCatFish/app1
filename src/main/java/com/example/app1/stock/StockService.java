@@ -16,27 +16,9 @@ public class StockService {
         this.stockRepository = stockRepository;
     }
 
-    public Long getData() {
-        return stockRepository.count();
-    }
 
-
-    public Stock getOneEntity(StockPK pk){
-        Optional<Stock> stock = stockRepository.findById(pk);
-
-        return stock.get();
-    }
-
-    public List<Stock> getStockInRange(LocalDate fromDate, LocalDate toDate) {
-        return stockRepository.searchByRange(fromDate, toDate);
-    }
-
-    public List<Stock> getTickerStockInRange(String ticker, LocalDate fromDate, LocalDate toDate){
-        return stockRepository.searchByRangeAndTicker(ticker, fromDate, toDate);
-    }
-
-    public Double getMeanAdjCloseInRange(String ticker, LocalDate fromDate, LocalDate toDate) {
-        return stockRepository.findMeanAdjcloseInRange(ticker, fromDate, toDate);
+    public List<Stock> getQuoteByDate(List<String> tickers, LocalDate fromDate, LocalDate toDate){
+        return stockRepository.searchByDate(tickers, fromDate, toDate);
     }
 
     public List<Stock> getTopRecords(String ticker, int num){
