@@ -39,12 +39,12 @@ public class StockService {
         return stockRepository.findMeanAdjcloseInRange(ticker, fromDate, toDate);
     }
 
-    public List<Stock> getTopRecords(int num){
-        return stockRepository.showTopRecords(num);
+    public List<Stock> getTopRecords(String ticker, int num){
+        return stockRepository.showTopRecords(ticker, num);
     }
 
-    public List<Stock> getTailRecords(int num){
-        return stockRepository.showTailRecords(num);
+    public List<Stock> getTailRecords(String ticker, int num){
+        return stockRepository.showTailRecords(ticker, num);
     }
 
     public List<Stock> getRecordsByTickerList(List<String> tickers){

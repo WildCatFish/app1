@@ -10,11 +10,11 @@ import java.util.List;
 @Repository
 public interface StockRepository extends JpaRepository<Stock, StockPK> {
 
-    @Query(value = "SELECT * FROM stock s ORDER BY s.date DESC limit ?1", nativeQuery = true)
-    List<Stock> showTailRecords(int number);
+    @Query(value = "SELECT * FROM stock s WHERE s.ticker =?1 ORDER BY s.date DESC limit ?2", nativeQuery = true)
+    List<Stock> showTailRecords(String ticker, int number);
 
-    @Query(value = "SELECT * FROM stock s ORDER BY s.date limit ?1", nativeQuery = true)
-    List<Stock> showTopRecords(int number);
+    @Query(value = "SELECT * FROM stock s WHERE s.ticker=?1 ORDER BY s.date limit ?2", nativeQuery = true)
+    List<Stock> showTopRecords(String ticker, int number);
 
     @Query(value = "SELECT * FROM stock s WHERE s.date BETWEEN ?1 AND ?2 ORDER BY s.date", nativeQuery = true)
     List<Stock> searchByRange(LocalDate fromDate, LocalDate toDate);

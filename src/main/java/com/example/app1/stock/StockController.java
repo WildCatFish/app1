@@ -53,14 +53,14 @@ public class StockController {
         return stockService.getMeanAdjCloseInRange(ticker, fromDate, toDate);
     }
 
-    @GetMapping(path = "top/{num}")
-    public List<Stock> getTopRecords(@PathVariable("num") int num){
-        return stockService.getTopRecords(num);
+    @GetMapping(path = "top/{ticker}/{num}")
+    public List<Stock> getTopRecords(@PathVariable("ticker") String ticker, @PathVariable("num") int num){
+        return stockService.getTopRecords(ticker, num);
     }
 
-    @GetMapping(path = "tail/{num}")
-    public List<Stock> getTailRecords(@PathVariable("num") int num){
-        return stockService.getTailRecords(num);
+    @GetMapping(path = "tail/{ticker}/{num}")
+    public List<Stock> getTailRecords(@PathVariable("ticker") String ticker, @PathVariable("num") int num){
+        return stockService.getTailRecords(ticker, num);
     }
 
     @GetMapping(path= "tickers/{ticker_List}")
