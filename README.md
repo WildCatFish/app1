@@ -10,7 +10,7 @@
   """
 ```
 ```python
-@GetMapping(path = "top/{ticker}/{num}")
+@GetMapping(path = "tail/{ticker}/{num}")
   """ 
   sort the data in descending order, retrieve the first specified 
   number of records for that particular ticker 
