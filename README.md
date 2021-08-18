@@ -2,7 +2,7 @@
 
 ## API 1.0 Usage
 ------
-``` 
+``` python
 @GetMapping(path = "top/{ticker}/{num}")
   """
   sort the data in ascending order, retrieve the first specified 
