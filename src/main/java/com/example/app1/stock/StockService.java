@@ -33,10 +33,24 @@ public class StockService {
         return stockRepository.searchByTickerList(tickers);
     }
 
+    public List<Stock> getRecordsByTickerListFrom(List<String> tickers, LocalDate fromDate){
+        return stockRepository.searchByTickerListFrom(tickers, fromDate);
+    }
+
+    public List<Stock> getRecordsByTickerListTo(List<String> tickers, LocalDate toDate) {
+        return stockRepository.searchByTickerListTo(tickers, toDate);
+    }
+
+    public List<Stock> getRecordsByTickerListFromTo(List<String> tickers, LocalDate fromDate, LocalDate toDate){
+        return stockRepository.searchByTickerListFromTo(tickers, fromDate, toDate);
+    }
+
+
 
     public List<OpenCloseView> getTickerOpenClose(String ticker){
         return stockRepository.showTickerOpenClose(ticker);
     }
+
     public List<OpenCloseView> getTickerOpenCloseFromTo(String ticker, LocalDate fromDate, LocalDate toDate){
         return stockRepository.showTickerOpenCloseFromTo(ticker, fromDate, toDate);
 
@@ -49,5 +63,25 @@ public class StockService {
         return stockRepository.showTickerOpenCloseTo(ticker, toDate);
 
     }
+
+    public List<HighLowView>getTickerHighLow(String ticker){
+        return stockRepository.showTickerHighLow(ticker);
+    }
+
+    public List<HighLowView>getTickerHighLowFromTo(String ticker, LocalDate fromDate, LocalDate toDate){
+        return stockRepository.showTickerHighLowFromTo(ticker, fromDate, toDate);
+    }
+
+    public List<HighLowView>getTickerHighLowFrom(String ticker, LocalDate fromDate){
+        return stockRepository.showTickerHighLowFrom(ticker, fromDate);
+    }
+
+    public List<HighLowView>getTickerHighLowTo(String ticker, LocalDate toDate){
+        return stockRepository.showTickerHighLowTo(ticker, toDate);
+    }
+
+
+
+
 
 }
