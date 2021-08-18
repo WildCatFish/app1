@@ -33,7 +33,9 @@
      stored in the db for that particular list of tickers to that day.
      
      4. fromDate and toDate may be added at the same time, for example, 
-     tickers/A,AAL?fromDate=2020-12-05 & toDate=2020-12-31
+     tickers/A,AAL?fromDate=2020-12-05 & toDate=2020-12-31, then, it will
+     retrieve all the records stored in the db for that particular list of tickers
+     between these two date(inclusive).
   """
 ```
 
