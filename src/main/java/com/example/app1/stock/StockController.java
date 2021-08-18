@@ -1,14 +1,13 @@
 package com.example.app1.stock;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+
 
 @RestController
+@Validated
 @RequestMapping(path="api/v1.0/quote")
 public class StockController {
 
@@ -62,8 +61,8 @@ public class StockController {
     * */
     @GetMapping(path= "tickers/{ticker_List}")
     public List<Stock> getByTickerList(@PathVariable("ticker_List") List<String> tickers,
-                                       @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
-                                       @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate){
+                                       @RequestParam(required = false)  String fromDate,
+                                       @RequestParam(required = false)  String toDate){
 
         if(fromDate != null && toDate != null)
             return stockService.getRecordsByTickerListFromTo(tickers, fromDate, toDate);
@@ -78,8 +77,8 @@ public class StockController {
     //Similar as the one above
     @GetMapping(path="open_close_view/{ticker}")
     public List<OpenCloseView> getTickerOpenClose(@PathVariable("ticker") String ticker,
-                                                  @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
-                                                  @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate) {
+                                                  @RequestParam(required = false) String fromDate,
+                                                  @RequestParam(required = false) String toDate) {
         if(fromDate != null && toDate != null)
             return stockService.getTickerOpenCloseFromTo(ticker, fromDate, toDate);
         else if(fromDate != null)
@@ -93,8 +92,8 @@ public class StockController {
     //Similar as the one above
     @GetMapping(path="high_low_view/{ticker}")
     public List<HighLowView> getTickerHighLow(@PathVariable("ticker") String ticker,
-                                                  @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fromDate,
-                                                  @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate toDate) {
+                                                  @RequestParam(required = false) String fromDate,
+                                                  @RequestParam(required = false) String toDate) {
         if(fromDate != null && toDate != null)
             return stockService.getTickerHighLowFromTo(ticker, fromDate, toDate);
         else if(fromDate != null)
