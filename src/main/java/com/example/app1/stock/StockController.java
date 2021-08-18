@@ -50,7 +50,8 @@ public class StockController {
     }
 
 
-    /*There are several valid formats for this path:
+    /*
+    There are several valid formats for this path:
     *  1.if you just append the list of tickers' names without giving anything else, it will retrieve all the records
     * stored in the db for that particular list of tickers.
     *  2.a fromDate may also be added after the ticker list, for example, tickers/A,AAL?fromDate=2010-1-04, then it will retrieve all
