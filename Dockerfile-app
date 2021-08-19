@@ -6,4 +6,6 @@ RUN sh -c 'echo spring.datasource.url=jdbc:mysql://mysql:3306/market_data > appl
 RUN sh -c 'echo spring.datasource.username=root    >> application.properties'
 RUN sh -c 'echo spring.datasource.password=c0nygre >> application.properties'
 
+EXPOSE 8080
+
 ENTRYPOINT ["java","-jar","/app.jar"]
