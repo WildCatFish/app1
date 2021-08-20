@@ -5,24 +5,21 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                sh 'mvn --version'
-                }
+                   sh 'mvn clean compile'
             }
         }
 
         stage ('Testing Stage') {
 
             steps {
-                sh 'mvn --version'
-                }
+                   sh 'mvn test'
             }
         }
 
 
         stage ('Deployment Stage') {
             steps {
-                sh 'mvn --version'
-                }
+                   sh 'mvn deploy'
             }
         }
     }
