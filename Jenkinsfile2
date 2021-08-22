@@ -26,7 +26,7 @@ pipeline {
             steps{
                 //Do the cleaning up before restart the containers
                 sh 'docker-compose down'
-                sh 'docker rm -f $(docker ps -a -q)'
+                sh 'sudo docker rm -v $(sudo docker ps -aq -f status=exited)'
                 sh 'docker-compose up -d'
             }
         }
