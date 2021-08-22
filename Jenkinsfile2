@@ -24,8 +24,8 @@ pipeline {
             agent any
             steps{
                 // Do the cleaning up before restarting the containers, discard all the error outputs
-                sh '[ "$(docker ps -a | grep app1_mysql" ] && docker container rm -f app1_mysql'
-                sh '[ "$(docker ps -a | grep app1_app" ] && docker container rm -f app1_app'
+                sh '[ "$(docker ps -a | grep app1_mysql)" ] && docker container rm -f app1_mysql'
+                sh '[ "$(docker ps -a | grep app1_app)" ] && docker container rm -f app1_app'
                
                 // Restart the containers in the background, this will also rebuild the containers
                 sh 'docker-compose up -d'
