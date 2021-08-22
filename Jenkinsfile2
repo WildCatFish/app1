@@ -23,9 +23,13 @@ pipeline {
         stage('Deploying Stage'){
             agent any
             steps{
-                //Do the cleaning up before restart the containers
-                sh 'docker-compose down'
-                sh 'docker rm -f $(docker ps -a -q)'
+                // Do the cleaning up before restarting the containers
+                sh 'docker stop app1_app'
+                sh 'docker stop app1_mysql'
+                sh 'docker rm -f app1_app'
+                sh 'docker rm -f app1_mysql'
+                
+                // Restart the containers, this will also rebuild the containers
                 sh 'docker-compose up -d'
             }
         }
