@@ -25,11 +25,11 @@
      it will retrieve all the records stored in the db for that particular list of tickers.
      
      2.a fromDate may also be added after the ticker list, for example, 
-     tickers/A,AAL?fromDate=2010-1-04, then it will retrieve all
+     tickers/A,AAL?fromDate=2010-01-04, then it will retrieve all
      the records stored in the db for that particular list of tickers from that day on.
      
      3.similarly, a toDate may also be added, for example, 
-     tickers/A,AAL?toDate=2010-1-04, then it will retrieve all the records
+     tickers/A,AAL?toDate=2010-01-04, then it will retrieve all the records
      stored in the db for that particular list of tickers to that day.
      
      4. fromDate and toDate may be added at the same time, for example, 

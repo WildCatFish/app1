@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile-mysql
+    image: emps/mysql:latest
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: c0nygre
+      #command: --explicit_defaults_for_timestamp
+
+  app:
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    image: emps/app:latest
+    ports:
+      - "8081:8081"
+    links:
+      - mysql:mysql
+    environment:
+        SPRING_DATASOUTCE_URL: jdbc:mysql://mysql:3306/market_data?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false
+    depends_on:
+      - mysql
+
