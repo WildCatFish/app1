@@ -1,9 +1,6 @@
 pipeline {
   
-  environment {
-        PATH = "$PATH:/usr/bin"
-    }
-    
+
   agent { docker 'maven:3.8.2' }
   
   stages {
@@ -24,7 +21,7 @@ pipeline {
         stage('Deploying Stage'){
         
             steps {
-                   sh "docker-compose up"
+                   sh "/usr/bin/docker-compose up"
         
             }
         
