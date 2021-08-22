@@ -26,7 +26,8 @@ pipeline {
             steps{
                 //Do the cleaning up before restart the containers
                 sh 'docker-compose down'
-                //sh 'sudo docker rm -v $(sudo docker ps -aq -f status=exited)'
+                sh 'docker stop app1_app || true && docker rm app1_app || true'
+                sh 'docker stop app1_mysql || true && docker rm app1_mysql || true'
                 sh 'docker-compose up -d'
             }
         }
