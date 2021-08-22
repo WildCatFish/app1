@@ -21,7 +21,8 @@ pipeline {
         stage('Deploying Stage'){
         
             steps {
-                   sh 'pwd'
+                   sh 'docker run --network mynet --name mysql -d emps/mysql'
+                   sh 'docker run --network mynet --name app --link mysql:mysql -p 8081:8081 emps/app'
         
             }
         
