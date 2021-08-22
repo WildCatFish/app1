@@ -1,9 +1,7 @@
 pipeline {
-  
+    agent { docker 'maven:3.8.2' }
 
-  agent { docker 'maven:3.8.2' }
-  
-  stages {
+    stages {
         stage ('Compile Stage') {
 
             steps {
@@ -17,19 +15,7 @@ pipeline {
                    sh 'mvn test'
             }
         }
-        
-        stage('Deploying Stage'){
-        
-            steps {
-                   sh 'docker run --network mynet --name mysql -d  emps/mysql'
-                   sh 'docker run --network mynet --name app --link mysql:mysql -p 8081:8081 emps/app'
-'
-        
-            }
-        
-        }
 
 
     }
 }
- 
