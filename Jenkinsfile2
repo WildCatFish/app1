@@ -28,6 +28,7 @@ pipeline {
                 sh 'docker-compose down'
                 sh 'docker stop app1_app || true && docker rm app1_app || true'
                 sh 'docker stop app1_mysql || true && docker rm app1_mysql || true'
+                //Restart the containers
                 sh 'docker-compose up -d'
             }
         }
