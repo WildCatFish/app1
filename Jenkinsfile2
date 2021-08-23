@@ -9,8 +9,6 @@ pipeline {
             agent { docker 'maven:3.8.2' }
             steps{
                 sh 'mvn clean compile'
-                sh 'chmod +x ./mvnw'
-                sh './mvnw package'
             }
         
         }
@@ -25,6 +23,9 @@ pipeline {
         stage('Deploying Stage'){
             agent any
             steps{
+                sh 'chmod +x ./mvnw'
+                sh './mvnw package'
+            
                 //Do the cleaning up before restarting the containers
                 sh 'docker-compose down'
                 sh 'docker stop app1_app || true && docker rm app1_app || true'
