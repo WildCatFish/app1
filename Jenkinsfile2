@@ -28,6 +28,11 @@ pipeline {
                 sh 'docker-compose down'
                 sh 'docker stop app1_app || true && docker rm app1_app || true'
                 sh 'docker stop app1_mysql || true && docker rm app1_mysql || true'
+                
+                //rebuild images in case of there might some changes
+                sh 'docker build -f Dockerfile-app -t emps/app .'
+                sh 'docker build -f Dockerfile-mysql -t emps/mysql .'
+                
                 //Restart the containers
                 sh 'docker-compose up -d'
             }
